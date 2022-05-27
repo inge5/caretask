@@ -32,7 +32,7 @@ export class SidebarContactComponent implements OnInit {
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      producto: ['SMARTSALES', Validators.required],
+      producto: ['CARETASK', Validators.required],
       acepto: ['', Validators.required],
     });
   }
@@ -62,9 +62,9 @@ export class SidebarContactComponent implements OnInit {
       return;
     }
     $.ajax({
-      url: `${environment.domain}/wp-content/plugins/form-contactenos/mailProducts.php`,
+      url: `${environment.domain}/wp-content/plugins/form-contactenos/mailProductCaretask.php`,
       type: 'POST',
-      data: JSON.stringify(this.form),
+      data: this.formulario.value,
       dataType: 'json',
       success: function (data: any) {},
       error: function (error: any) {
@@ -85,6 +85,7 @@ export class SidebarContactComponent implements OnInit {
       },
     });
     this.formulario.reset();
+    this.formulario.get('producto')?.setValue('CARETASK');
     this.cierraTrabajemos();
   }
 }
